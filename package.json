@@ -1,5 +1,5 @@
 {
-  "name": "servertgb",
+  "name": "serverapi",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,13 @@
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
+    "ejs": "~2.5.6",
     "express": "~4.15.2",
-    "jade": "~1.11.0",
     "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "mysql": "*",
+    "sequelize": "*",
+    "socket.io": "*",
+    "nodemailer": "*"
   }
 }
