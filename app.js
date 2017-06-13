@@ -6,8 +6,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mysql=require('mysql');
-var nodemailer=require('nodemailer');
-var smtpTransport=require('nodemailer-smtp-transport');
+var ip = require("ip");
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -65,6 +65,8 @@ app.set('port', 3000);
 server.listen(app.get('port'), function() {
     console.log("Express server listening on port " + app.get('port'));
 });
+
+console.dir ( ip.address() );
 
 ///////////////////////////////////////////////////////////////////////////
 

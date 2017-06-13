@@ -49,7 +49,7 @@ module.exports.findByUsername = function(username, callback) {
 module.exports.customer_save_timetable = function(username,title,address,date,timestart,timeend,description, callback) {
     User.create({
         id: '',
-        username: user,
+        username: username,
         title: title,
         address: address,
         date: date,
