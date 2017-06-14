@@ -70,20 +70,44 @@ console.dir ( ip.address() );
 
 ///////////////////////////////////////////////////////////////////////////
 
+
+
 io.sockets.on('connection', function(socket) {
 
-    
-    socket.on('save_time_table',function(jsonObject){
-      customersModels.findByUsername(jsonObject.user,function(result){
-        if(result){
-          customersModels.customer_save_timetable(jsonObject.username,jsonObject.title,jsonObject.address,jsonObject.date,jsonObject.timestart,jsonObject.timeend,jsonObject.description,function(result1){
-            socket.emit('result_save',{result1:result1});
-          });
-        }else{
-          socket.emit('result_save',{result1:result1});
-        }
-      });
-    }); 
-    
+	socket.on('save_time_table',function(jsonObject){
+
+		customersModels.findByIdcv(jsonObject.idcv, function(result){
+			if(result){
+				customersModels.customer_save_timetable(jsonObject.username, jsonObject.idcv,jsonObject.title,jsonObject.address,jsonObject.date,jsonObject.timestart,jsonObject.timeend,jsonObject.description,function(result1){
+					if(result1){
+						socket.emit('result_save',{result1:result1});
+					}else{
+						socket.emit('result_save',{result1:result1});
+					}
+				})
+			}
+			else{
+			customersModels.customer_update_timetable(jsonObject.username, jsonObject.idcv,jsonObject.title,jsonObject.address,jsonObject.date,jsonObject.timestart,jsonObject.timeend,jsonObject.description, function(result2){
+				if(result2){
+					socket.emit('result_save_update',{result2:result2});
+				}else{
+					socket.emit('result_save_update',{result2:result2});
+				}
+			})	
+			}
+		})
+
+	});
+
+
+	socket.on('getAllCongViecByUsername',function(username){
+		customersModels.getAllCongViecByUsername(username,function(userList){
+
+			socket.emit('result_getAllCongViecByUsername',{userList: userList});
+
+		})
+	})
+
 
 });
+
